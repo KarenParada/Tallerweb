@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToPage('/home-jefe')">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Gestión de turnos
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-badge style="margin-right: 5px;" color="danger">{{unreadNotifications}}</ion-badge>
+      <ion-icon style="margin-right: 10px;" name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label>Fecha</ion-label>
+    <ion-datetime displayFormat="D MMM YYYY" [(ngModel)]="fecha"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked" for="horizonteDias">Horizonte de días</ion-label>
+    <ion-input id="horizonteDias" type="number" [(ngModel)]="horizonteDias"></ion-input>
+  </ion-item>
+  <ion-note *ngIf="!horizonteDias" color="danger" style="font-size: small;">Por favor, introduce el horizonte de días.</ion-note>
+  
+  
+  
+  <ion-text style="font-size: small; color:gray;">
+    <p>Seleccione para cada grupo el tipo de turno inicial a la fecha: {{ fecha | date:'d MMM yyyy':'':'es' }}</p>
+  </ion-text>
+
+  <ion-grid>
+    <ion-row *ngFor="let grupo of gruposTurno; let i = index" style="align-items: center;">
+      <ion-col size="3">
+        <ion-label style="padding: 0;color:green;">{{ grupo.Nombre }}</ion-label>
+      </ion-col>
+      <ion-col style="color:rgb(60, 7, 110)" size="7">
+        <ion-select placeholder="Seleccione tipo turno" style="padding: 0;" [(ngModel)]="grupo.tipoTurnoInicial">
+          <ion-select-option *ngFor="let tipoTurno of tiposTurno" [value]="tipoTurno.Nombre">{{ tipoTurno.Nombre }}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon *ngIf="grupo.tipoTurnoInicial && grupo.tipoTurnoInicial.Nombre == 'Noche'" name="moon"></ion-icon>
+        <ion-icon *ngIf="grupo.tipoTurnoInicial && grupo.tipoTurnoInicial.Nombre == 'Largo'" name="sunny"></ion-icon>
+        <ion-icon *ngIf="grupo.tipoTurnoInicial && grupo.tipoTurnoInicial.Nombre == 'Libre'" name="bed"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-button expand="full" (click)="programarTurnos()" [disabled]="!horizonteDias || !todosLosGruposTienenTipoTurno()">Programar</ion-button>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selectedTab" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="gestionpersonal" (click)="navigateToPage('/home-jefe-gestionpersonal');selectedTab = 'gestionpersonal'">
+        <ion-icon name="people-outline"></ion-icon>
+        <div>Gestión</div>
+        <div>Personal</div>
+      </ion-segment-button>
+      <ion-segment-button value="gestionturnos" (click)="navigateToPage('/home-jefe-gestionturnos');selectedTab = 'asignarturnos'">
+        <ion-icon name="medkit"></ion-icon>
+        <div>Asignar</div>
+        <div>Turnos</div>
+      </ion-segment-button>
+      <ion-segment-button value="estadistica" (click)="navigateToPage('/home-jefe-estadistica');selectedTab = 'estadistica'">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+        <div> Estadistica </div>
+      </ion-segment-button>
+      <ion-segment-button value="calendario" (click)="navigateToPage('/home-jefe-calendario');selectedTab = 'calendario'">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <div> Calendario </div>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

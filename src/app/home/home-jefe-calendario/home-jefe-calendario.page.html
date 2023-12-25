@@ -1,0 +1,67 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToPage('/home-jefe')">
+        <ion-icon name="home-outline"></ion-icon>
+        <!-- <ion-avatar>
+          <img [src]="fotoUrl">
+        </ion-avatar> -->
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Calendario
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-badge style="margin-right: 5px;" color="danger">{{unreadNotifications}}</ion-badge>
+      <ion-icon style="margin-right: 10px;" name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div id='calendar'></div>
+
+<div id="legend-container">
+  <div id="legend-title">
+    <h2 style="text-align: center; color: gray; margin: 0px;font-size: 1em;">Leyenda</h2>
+  </div>
+  <div id="legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgb(213, 229, 235);"></div>
+      <div class="legend-text">Grupo 1</div>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgb(228, 241, 228);"></div>
+      <div class="legend-text">Grupo 2</div>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: #FFEAE9;"></div>
+      <div class="legend-text">Grupo 3</div>
+    </div>
+  </div>
+</div>
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selectedTab" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="gestionpersonal" (click)="navigateToPage('/home-jefe-gestionpersonal');selectedTab = 'gestionpersonal'">
+        <ion-icon name="people-outline"></ion-icon>
+        <div>Gestión</div>
+        <div>Personal</div>
+      </ion-segment-button>
+      <ion-segment-button value="gestionturnos" (click)="navigateToPage('/home-jefe-gestionturnos');selectedTab = 'asignarturnos'">
+        <ion-icon name="medkit"></ion-icon>
+        <div>Asignar</div>
+        <div>Turnos</div>
+      </ion-segment-button>
+      <ion-segment-button value="estadistica" (click)="navigateToPage('/home-jefe-estadistica');selectedTab = 'estadistica'">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+        <div> Estadistica </div>
+      </ion-segment-button>
+      <ion-segment-button value="calendario" (click)="navigateToPage('/home-jefe-calendario');selectedTab = 'calendario'">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <div> Calendario </div>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
+

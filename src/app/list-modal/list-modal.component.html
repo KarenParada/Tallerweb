@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="!editingItem">
+    <ion-item *ngFor="let item of items">
+      {{item.nombre}}
+      <ion-buttons slot="end">
+        <ion-button (click)="startEditing(item)">Editar</ion-button>
+        <ion-button color="danger" (click)="deleteItem(item)">Eliminar</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <form *ngIf="editingItem">
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input [(ngModel)]="editingItem.nombre" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Activo</ion-label>
+      <ion-toggle [(ngModel)]="editingItem.activo" [ngModelOptions]="{standalone: true}"></ion-toggle>
+    </ion-item>
+  
+    <!-- Agrega más campos de entrada según sea necesario -->
+  
+    <ion-button (click)="saveChanges()">Guardar</ion-button>
+    <ion-button (click)="cancelEditing()">Cancelar</ion-button>
+  </form>
+  
+  
+</ion-content>

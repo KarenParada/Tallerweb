@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToPage('/home-jefe')">
+        <ion-icon name="home-outline"></ion-icon>
+        <!-- <ion-avatar>
+          <img [src]="fotoUrl">
+        </ion-avatar> -->
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Estadistica
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-badge style="margin-right: 5px;" color="danger">{{unreadNotifications}}</ion-badge>
+      <ion-icon style="margin-right: 10px;" name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-select [(ngModel)]="date">
+    <ion-select-option value="2023-12-20">20-12-2023</ion-select-option>
+    <ion-select-option value="2023-12-21">21-12-2023</ion-select-option>
+    <ion-select-option value="2023-12-22">22-12-2023</ion-select-option>
+    <ion-select-option value="2023-12-23">23-12-2023</ion-select-option>
+  </ion-select>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Indicador</th>
+        <th>Cirugía</th>
+        <th>UCI</th>
+        <th>UTI</th>
+        <th>Pediatría</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td>{{ row.Indicador }}</td>
+        <td>{{ row.Cirugia }}</td>
+        <td>{{ row.UCI }}</td>
+        <td>{{ row.UTI }}</td>
+        <td>{{ row.Pediatria }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ion-content>
+
+<img src="assets/estadistica.png" alt="Gráfico">
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selectedTab" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="gestionpersonal" (click)="navigateToPage('/home-jefe-gestionpersonal');selectedTab = 'gestionpersonal'">
+        <ion-icon name="people-outline"></ion-icon>
+        <div>Gestión</div>
+        <div>Personal</div>
+      </ion-segment-button>
+      <ion-segment-button value="gestionturnos" (click)="navigateToPage('/home-jefe-gestionturnos');selectedTab = 'asignarturnos'">
+        <ion-icon name="medkit"></ion-icon>
+        <div>Asignar</div>
+        <div>Turnos</div>
+      </ion-segment-button>
+      <ion-segment-button value="estadistica" (click)="navigateToPage('/home-jefe-estadistica');selectedTab = 'estadistica'">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+        <div> Estadistica </div>
+      </ion-segment-button>
+      <ion-segment-button value="calendario" (click)="navigateToPage('/home-jefe-calendario');selectedTab = 'calendario'">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <div> Calendario </div>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

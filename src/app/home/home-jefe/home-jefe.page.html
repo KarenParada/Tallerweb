@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title>
+      Bienvenido
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-badge style="margin-right: 5px;" color="danger">{{unreadNotifications}}</ion-badge>
+      <ion-icon style="margin-right: 10px;" name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="tablero">
+  <h2 class="tablero">¿Qué quieres hacer hoy?</h2>
+  <p class="tablero">Fecha: {{today | date:'fullDate':'':'es'}}</p>
+  <p class="tablero">Turno: <ion-icon [name]="isDayTime ? 'sunny' : 'moon'"></ion-icon></p>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Panel de Notificaciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Sin notificaciones
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selectedTab" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="gestionpersonal" (click)="navigateToPage('/home-jefe-gestionpersonal');selectedTab = 'gestionpersonal'">
+        <ion-icon name="people-outline"></ion-icon>
+        <div>Gestión</div>
+        <div>Personal</div>
+      </ion-segment-button>
+      <ion-segment-button value="gestionturnos" (click)="navigateToPage('/home-jefe-gestionturnos');selectedTab = 'asignarturnos'">
+        <ion-icon name="medkit"></ion-icon>
+        <div>Asignar</div>
+        <div>Turnos</div>
+      </ion-segment-button>
+      <ion-segment-button value="estadistica" (click)="navigateToPage('/home-jefe-estadistica');selectedTab = 'estadistica'">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+        <div> Estadistica </div>
+      </ion-segment-button>
+      <ion-segment-button value="calendario" (click)="navigateToPage('/home-jefe-calendario');selectedTab = 'calendario'">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <div> Calendario </div>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
+
+

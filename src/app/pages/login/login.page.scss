@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Afacad:400,300,500,700');
+
+body {
+    font-family: 'Afacad', sans-serif;
+    font-weight: 300; /* Normal */
+}
+
+.input{
+    font-weight: 300;
+    color:gray;
+    font-family: 'Afacad', sans-serif; 
+}
+ion-item {
+    --background: #f1f1f1;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+.header{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'Afacad', sans-serif;
+    font-weight: 500;
+
+    .subtitle{
+        color: gray;
+        font-size: 0.9rem;
+    }
+    .title{
+        font-size: 2.1rem;
+    }
+}
+.signupLink{
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    font-family: 'Afacad', sans-serif;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+    .p{
+        font-size: 1rem;
+    }
+    a {
+        text-decoration: none;
+      }
+}
+.forgotpassword{
+    display: flex;
+    justify-content: center;
+    font-family: 'Afacad', sans-serif;
+    a {
+    font-weight: 400;
+    font-size: 0.9rem;
+        text-decoration: none;
+      }
+}
+.errorInput{
+    color: red;
+    font-weight: 300;
+    font-size: small;
+    padding-top: -16px;
+}
+
+.contenedor-imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh; 
+    width: 100vw; 
+}
+
+.mi-imagen {
+    margin-top: 30px;
+    width: 150px; 
+    height: 150px; 
+}

@@ -1,0 +1,46 @@
+<ion-content [fullscreen]="true">
+  <div class="contenedor-imagen">
+    <ion-img class="mi-imagen" src="assets/icon/estetoscopio.png"/>
+  </div>
+  <div class="header">
+    <ion-title class="title" size="large">GESTIÓN DE TURNOS</ion-title>
+    <p class="subtitle">Ingresa tus datos para acceder a tu cuenta</p>
+  </div>
+  <form [formGroup]="ionicForm"  novalidate>
+    <div class="ion-padding">
+
+      <ion-item>
+        <ion-input placeholder="correo electrónico" formControlName="email" class="input" />
+        <ion-icon name="person-outline"></ion-icon>
+        
+      </ion-item>
+    
+      <div style="padding-top: -26px;padding-bottom: 16px;" *ngIf="this.ionicForm.controls?.['email'].touched && this.ionicForm.controls?.['email'].invalid">
+          <ion-text *ngIf="errorControl.email.errors?.required" class="errorInput" color="danger">Email es requerido.</ion-text>
+          <ion-text *ngIf="errorControl.email.errors?.pattern" class="errorInput" color="danger">Por favor escriba un email válido.</ion-text>
+      </div>
+      <ion-item>
+        <ion-input type="password" placeholder="contraseña" formControlName="password" class="input" />
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+      <div style="padding-top: -26px;padding-bottom: 16px;" *ngIf="this.ionicForm.controls?.['password'].touched && this.ionicForm.controls?.['password'].invalid">
+          <ion-text *ngIf="errorControl.password.errors?.required" class="errorInput" color="danger">Contraseña es requerida.</ion-text>
+          <ion-text *ngIf="errorControl.password.errors?.pattern" class="errorInput"  color="danger">La contraseña debe contener al menos un carácter</ion-text>
+      </div>
+    
+      <div class="forgotpassword">
+        <a [routerLink]="['/forgot-password']" style="color: #07605f">¿Olvidaste tu contraseña?</a>
+      </div>
+
+    </div>
+    <div class="signupLink">
+      <p class="p">¿Nuevo usuario?<a [routerLink]="['/signup']" style="color: #FFC33F"> Registrarse</a></p>
+    </div>
+
+    <ion-fab *ngIf="ionicForm.valid" vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
+      <ion-fab-button  type="submit" (click)="login()" >
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>
